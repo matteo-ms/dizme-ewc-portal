@@ -89,6 +89,8 @@ export default function Home() {
   return (
     <div>
       <div className="flex flex-col justify-center items-center mt-10">
+        {/* add flag */}
+        <img src={`/flags/${country.toLowerCase().split(" ").join("-")}.png`} alt={country} style={{ maxWidth: '100px' }} />
         <h1 className="text-4xl font-bold text-primary-900 text-center mt-5">
           {country} Portal
         </h1>
@@ -104,7 +106,8 @@ export default function Home() {
           </div>
           {/* <Button size='sm' onClick={() => { setModalVisible(true); }}>Custom Credential</Button> */}
         </div>
-        {credentials.length === 0 && <div className='w-full mt-10 text-center'>No Credential with that name.</div>}
+        {searchTerm && credentials.length === 0 && <div className='w-full mt-10 text-center'>No Credential with that name.</div>}
+        {!searchTerm && credentials.length === 0 && <div className='w-full mt-10 text-center'>No Credential for this country.</div>}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-5 mt-10">
           {credentials.map(({ id, title, issuer, selected }) => (
             <Credential
