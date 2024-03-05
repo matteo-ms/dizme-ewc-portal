@@ -6,7 +6,7 @@ export type AvailableCredential = {
 };
 
 export const CredentialFormats = [
-  'JWT + VCDM',
+  // 'JWT + VCDM',
   'SD-JWT + VCDM',
   // 'Data Integrity/JSON-LD+ VCDM',
   // 'mdoc / mdl (IEC/ISO 18013-5) ',

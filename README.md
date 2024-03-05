@@ -1,16 +1,8 @@
 <div align="center">
  <h1>Credential Issuance & Verification Portal</h1>
- <span>by </span><a href="https://walt.id">walt.id</a>
+ <span>by </span><a href="https://dizme.io">Dizme</a>
+ <span>Forked from </span><a href="https://walt.id">walt.id</a>
  <p>Sample application that showcases the issuance and verification of W3C Verifiable Credentials<p>
-
-<a href="https://walt.id/community">
-<img src="https://img.shields.io/badge/Join-The Community-blue.svg?style=flat" alt="Join community!" />
-</a>
-<a href="https://twitter.com/intent/follow?screen_name=walt_id">
-<img src="https://img.shields.io/twitter/follow/walt_id.svg?label=Follow%20@walt_id" alt="Follow @walt_id" />
-</a>
-
-
 </div>
 
 ## Getting Started
@@ -30,8 +22,8 @@ pnpm build
 Using Docker:
 
 ```bash
-docker build -t waltid/portal -f waltid-web-portal/Dockerfile .
-docker run -p 7102:7102 -i -t waltid/portal
+docker build -t dizme/portal -f Dockerfile .
+docker run -p 7102:7102 -i -t dizme/portal
 ```
 
 ## Join the community
