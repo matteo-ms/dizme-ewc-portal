@@ -21,7 +21,12 @@ export default function App({ Component, pageProps }: AppProps) {
           axios.get(`${env.NEXT_PUBLIC_VC_REPO}/api/vc/${credential}`).then((data) => {
             setAvailableCredentials((prev) => [...prev, {
               id: credential,
-              title: credential,
+              title: data.data.type[1],
+              issuer: {
+                image: data.data.issuer.image.id,
+                name: data.data.issuer.name,
+                country: data.data.issuer.country,
+              },
               offer: data.data,
             }]);
           });

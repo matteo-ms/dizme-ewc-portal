@@ -6,6 +6,11 @@ import { AvailableCredential } from '@/types/credentials';
 type Props = {
   id: string;
   title: string;
+  issuer: {
+    name: string;
+    image: string;
+    country: string;
+  };
   description?: string;
   selected?: boolean;
   onClick: (id: string) => void;
@@ -14,6 +19,7 @@ type Props = {
 export default function Credential({
   id,
   title,
+  issuer,
   description,
   selected = false,
   onClick,
@@ -32,11 +38,11 @@ export default function Credential({
          }`}
       >
         <div className="flex flex-row">
-          {selected ? (
-            <WaltIcon height={35} width={35} outline type="white" />
-          ) : (
-            <WaltIcon height={35} width={35} outline type="white" />
-          )}
+          {/* add issuer logo */}
+          <img
+            src={issuer.image}
+            alt={issuer.name}
+            className="h-10"></img>
         </div>
         <div className="mb-8 mt-12">
           <h6 className={'text-2xl font-bold '}>{title.length > 20 ? title.substring(0, 20) + '...' : title}</h6>

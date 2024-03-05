@@ -1,6 +1,11 @@
 export type AvailableCredential = {
   id: string;
   title: string;
+  issuer: {
+    image: string
+    name: string,
+    country: string,
+  };
   selectedFormat?: String;
   offer: any;
 };
