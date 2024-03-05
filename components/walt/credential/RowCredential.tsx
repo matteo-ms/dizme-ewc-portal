@@ -1,8 +1,9 @@
 import { AvailableCredential, CredentialFormats } from '@/types/credentials';
-import EditCredentialModal from '../modal/EditCredentialModal';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
-import Dropdown from '@/components/walt/forms/Dropdown';
 import React from 'react';
+import { getCountryImageUrl } from '@/utils/flags';
+import EditCredentialForm from '../forms/EditCredentialForm';
+import EditCredentialModal from '../modal/EditCredentialModal';
 
 type Props = {
   credentialToEdit: AvailableCredential;
@@ -47,23 +48,28 @@ export default function RowCredential({ credentialToEdit, credentialsToIssue, se
       })
     );
   }, [selectedFormat]);
-
+ 
   return (
     <>
       <div className="flex flex-row gap-5 justify-between">
-        <div className="flex flex-row gap-5 items-center">
-          <div className="hidden sm:block bg-primary-400 w-[45px] h-[28px] rounded-lg"></div>
-          <span className="text-gray-900 text-lg text-left">{credentialToEdit.title}</span>
+        <div className="flex flex-row gap-3 items-center">
+        <img
+            src={credentialToEdit.issuer.image}
+            alt={credentialToEdit.issuer.name}
+            className="h-16"></img>
+          <span className="text-gray-900 text-xl text-left">{credentialToEdit.title}</span>
           <PencilSquareIcon onClick={() => { setModalVisible(true) }} className="h-4 text-gray-500 hover:text-primary-400 cursor-pointer" />
         </div>
         <div className="flex flex-row items-center gap-3 w-5/12">
           <div className="w-[2px] h-[2px] bg-gray-200"></div>
           <div className="w-full">
-            <Dropdown
+            {/* <Dropdown
               values={CredentialFormats}
               selected={selectedFormat}
               setSelected={setSelectedFormat}
-            />
+            /> */}
+              <div className="text-gray-500 text-sm">Credential will be released as:</div>
+              <div className="text-gray-900 text-sm">{selectedFormat}</div>
           </div>
         </div>
       </div>

@@ -33,20 +33,19 @@ export default function Credential({
         className={`${
           selected ? 'drop-shadow-2xl' : 'drop-shadow-sm'
         } flex flex-col
-         rounded-xl py-7 px-8 text-gray-100 h-[225px] w-[360px] cursor-pointer overflow-hidden ${
+         rounded-xl py-7 px-8 text-white h-[225px] w-[360px] cursor-pointer overflow-hidden ${
            selected ? blueLight : blueDark
          }`}
       >
+        <div className="mb-4">
+          <h6 className={'text-2xl font-bold '}>{title.length > 20 ? title.substring(0, 20) + '...' : title}</h6>
+          <span>{description}</span>
+        </div>
         <div className="flex flex-row">
-          {/* add issuer logo */}
           <img
             src={issuer.image}
             alt={issuer.name}
-            className="h-10"></img>
-        </div>
-        <div className="mb-8 mt-12">
-          <h6 className={'text-2xl font-bold '}>{title.length > 20 ? title.substring(0, 20) + '...' : title}</h6>
-          <span>{description}</span>
+            className="h-15 bg-white rounded-xl"></img>
         </div>
       </div>
     </div>

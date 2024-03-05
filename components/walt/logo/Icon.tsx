@@ -6,14 +6,14 @@ type Props = {
     className?: string;
 };
 
-export default function ICIcon({
+export default function EWCIcon({
     width,
     height,
     className,
 }: Props) {
     return (
         <Image
-            src="https://www.infocert.it/content/uploads/2021/09/logo.svg"
+            src="/ewc.svg"
             alt="Logo"
             width={width}
             height={height}

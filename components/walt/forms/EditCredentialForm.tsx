@@ -1,16 +1,14 @@
 import React from 'react';
 import Button from '@/components/walt/button/Button';
-import BaseModal from '@/components/walt/modal/BaseModal';
 
 type Props = {
   show: boolean;
   onClose: () => void;
-  credentialSubject: JSON;
-  setCredentialSubject: (credentialSubject: JSON) => void;
+  credentialSubject: Record<string, string>;
+  setCredentialSubject: (credentialSubject: Record<string, string>) => void;
 };
 
-
-export default function EditCredentialModal({ show, onClose, credentialSubject, setCredentialSubject }: Props) {
+export default function EditCredentialForm({ show, onClose, credentialSubject, setCredentialSubject }: Props) {
   const [subjectJson, setSubjectJson] = React.useState(credentialSubject);
 
   const handleInputChange = (key: string, value: string) => {
@@ -21,8 +19,7 @@ export default function EditCredentialModal({ show, onClose, credentialSubject, 
   };
 
   return (
-    <BaseModal show={show} securedByWalt={false} onClose={onClose}>
-      <div className="flex flex-col items-left">
+    <div className="flex flex-col items-left">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Object.entries(subjectJson).map(([key, value]) => (
           <div key={key} className="mt-4">
@@ -49,6 +46,5 @@ export default function EditCredentialModal({ show, onClose, credentialSubject, 
         </Button>
       </div>
     </div>
-    </BaseModal>
-  );
+  );  
 }

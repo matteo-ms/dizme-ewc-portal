@@ -26,7 +26,7 @@ export default function InputField({
   return (
     <div>
       <label
-        htmlFor="email"
+        htmlFor={name}
         className={`${!showLabel ? 'sr-only' : 'text-sm text-gray-800'}`}
       >
         {label}
@@ -55,3 +55,5 @@ export default function InputField({
     </div>
   );
 }
+
+

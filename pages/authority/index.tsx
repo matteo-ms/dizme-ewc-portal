@@ -7,6 +7,8 @@ import { CredentialsContext } from '@/pages/_app';
 import { Inter } from 'next/font/google';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Icon from '@/components/walt/logo/Icon';
+import Spacer from '@/components/walt/spacer/Spacer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -89,11 +91,15 @@ export default function Home() {
   return (
     <div>
       <div className="flex flex-col justify-center items-center mt-10">
-        {/* add flag */}
-        <img src={`/flags/${country.toLowerCase().split(" ").join("-")}.png`} alt={country} style={{ maxWidth: '100px' }} />
-        <h1 className="text-4xl font-bold text-primary-900 text-center mt-5">
-          {country} Portal
-        </h1>
+        <Icon height={150} width={150} />
+        <Spacer size={10} type={'horizontal'} />
+        <div className="flex items-center">
+          <img src={`/flags/${country.toLowerCase().split(" ").join("-")}.png`} alt={country}
+              style={{ maxHeight: '50px', marginRight: '10px' }} />
+          <h1 className="text-4xl font-bold text-primary-900 text-center mt-5">
+            {country} Portal
+          </h1>
+        </div>
         <p className="mt-4 text-lg text-primary-900">
           Select Credential(s) to issue or verify
         </p>

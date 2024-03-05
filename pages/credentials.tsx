@@ -3,7 +3,7 @@ import {
   ArrowUpTrayIcon,
   ViewfinderCircleIcon,
 } from '@heroicons/react/24/outline';
-import WaltIcon from '@/components/walt/logo/WaltIcon';
+import Icon from '@/components/walt/logo/Icon';
 import { useEffect, useState } from 'react';
 import SelectButton from '@/components/walt/forms/SelectButton';
 import { TbRubberStamp } from 'react-icons/tb';
@@ -52,7 +52,7 @@ export default function Credentials() {
         className="mt-10 flex flex-row justify-center cursor-pointer"
         onClick={() => router.push('/')}
       >
-        <WaltIcon height={35} width={35} type="primary" />
+        <Icon height={150} width={150} />
       </div>
       <div className="mt-10 bg-gray-100 rounded-lg py-2.5 px-5">
         <div className="flex flex-row gap-5">

@@ -9,4 +9,22 @@ const flags = [
   { country: 'Romania', imageUrl: '/flags/romania.png', countryCode: 'RO' }
 ];
 
-export { flags };
+// utils to get the alpha-2 country code from the country name
+const getCountryCode = (country: string) => {
+  const countryData = flags.find((flag) => flag.country === country);
+  return countryData?.countryCode;
+};
+
+// utils to get country name from the aplpha-2 country code
+const getCountryName = (countryCode: string) => {
+  const countryData = flags.find((flag) => flag.countryCode === countryCode);
+  return countryData?.country;
+};
+
+// get imageUrl from the country code
+const getCountryImageUrl = (countryCode: string) => {
+  const countryData = flags.find((flag) => flag.countryCode === countryCode);
+  return countryData?.imageUrl;
+};
+
+export { flags, getCountryName, getCountryCode, getCountryImageUrl };
