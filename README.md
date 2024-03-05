@@ -25,6 +25,15 @@ Using Docker:
 docker build -t dizme/portal -f Dockerfile .
 docker run -p 7102:7102 -i -t dizme/portal
 ```
+or, with environment variables:
+```bash
+docker run  --name dizme-portal -p 3001:3000 \
+    -e NEXT_PUBLIC_VC_REPO="http://localhost:3000" \
+    -e NEXT_PUBLIC_ISSUER="https://issuer.portal.walt-test.cloud" \
+    -e NEXT_PUBLIC_VERIFIER="https://verifier.portal.walt-test.cloud" \
+    -e NEXT_PUBLIC_WALLET="https://wallet.walt-test.cloud" \
+    -i -t dizme/portal
+```
 
 ## Join the community
 
