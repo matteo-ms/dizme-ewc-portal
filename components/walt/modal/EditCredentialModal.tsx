@@ -21,7 +21,7 @@ export default function EditCredentialModal({ show, onClose, credentialSubject, 
   };
 
   return (
-    <BaseModal show={show} securedByWalt={false} onClose={onClose}>
+    <BaseModal show={show} onClose={onClose}>
       <div className="flex flex-col items-left">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Object.entries(subjectJson).map(([key, value]) => (

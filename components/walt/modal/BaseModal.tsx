@@ -10,7 +10,6 @@ type ModalProps = {
   children: ReactNode;
   showBack?: boolean;
   onBackPress?: () => void;
-  securedByWalt?: boolean;
   showClose?: boolean;
 };
 
@@ -20,7 +19,6 @@ const Modal = ({
   children,
   showBack,
   onBackPress,
-  securedByWalt = true,
   showClose = true,
 }: ModalProps) => {
   return (
@@ -73,15 +71,6 @@ const Modal = ({
                 </div>
                 <div className="h-3"></div>
                 <div>{children}</div>
-                <HSpacer size={4} />
-                {securedByWalt && (
-                  <div className="flex flex-col items-center">
-                    <div className="flex flex-row gap-2 items-center content-center text-sm text-center text-gray-500">
-                      <p className="">Secured by walt.xyz</p>
-                      <WaltIcon height={15} width={15} type="gray" />
-                    </div>
-                  </div>
-                )}
               </Dialog.Panel>
             </Transition.Child>
           </div>

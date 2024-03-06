@@ -45,12 +45,6 @@ export default function Failed() {
                         })}
                     </div>
                 </div>
-                <div className="flex flex-col items-center mt-12">
-                    <div className="flex flex-row gap-2 items-center content-center text-sm text-center text-gray-500">
-                        <p className="">Secured by walt.id</p>
-                        <WaltIcon height={15} width={15} type="gray" />
-                    </div>
-                </div>
             </div>
         </div>
     );

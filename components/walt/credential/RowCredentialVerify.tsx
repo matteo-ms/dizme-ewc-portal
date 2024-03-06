@@ -48,37 +48,25 @@ export default function RowCredential({ credentialToEdit, credentialsToIssue, se
   }, [selectedFormat]);
 
   return (
-    <>
       <div className="flex flex-row gap-5 justify-between">
-        <div className="flex flex-col items-center">
-          <div className="text-gray-500 text-sm">
-            <span className="text-gray-900 text-lg"> {credentialToEdit.title} </span>
-            will be released by:</div>
-              <img src={credentialToEdit.issuer.image}
-                alt={credentialToEdit.issuer.name}
-                className="h-16">
-              </img>
-            <div className="flex flex-row items-center gap-3">
-              <div className="text-gray-500 text-sm">Edit
-              <span className="text-gray-900 text-lg"> {credentialToEdit.title} </span>
-               attributes</div>
-              <PencilSquareIcon onClick={() => { setModalVisible(true) }} className="h-8 text-gray-500 hover:text-primary-400 cursor-pointer" />
-          </div>
+        <div className="flex flex-col items-center gap-3 w-5/12">
+          <img src={credentialToEdit.issuer.image}
+            alt={credentialToEdit.issuer.name}
+            className="h-16">
+          </img>
+          <span className="text-gray-900 text-2xl"> {credentialToEdit.title} </span>
         </div>
         <div className="flex flex-row items-center gap-3 w-5/12">
-          <div className="w-[2px] h-[2px] bg-gray-200"></div>
           <div className="w-full">
             {/* <Dropdown
               values={CredentialFormats}
               selected={selectedFormat}
               setSelected={setSelectedFormat}
             /> */}
-            <div className="text-gray-500 text-sm">Credential will be released as:</div>
+            <div className="text-gray-500 text-sm">Credential will be verified as:</div>
             <div className="text-gray-900 text-sm">{selectedFormat}</div>
           </div>
         </div>
       </div>
-      <EditCredentialModal show={modalVisible} onClose={() => { setModalVisible(false) }} credentialSubject={credentialSubject} setCredentialSubject={setCredentialSubject} />
-    </>
   );
 }

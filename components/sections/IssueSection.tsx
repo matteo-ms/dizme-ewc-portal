@@ -16,8 +16,8 @@ export default function IssueSection() {
   const [AvailableCredentials] = React.useContext(CredentialsContext);
 
   const [preAuthorized, setPreAuthorized] = useState<boolean>(true);
-  const [requirePin, setRequirePin] = useState<boolean>(true);
-  const [pin, setPin] = useState<string>('0235');
+  const [requirePin, setRequirePin] = useState<boolean>(false);
+  const [pin, setPin] = useState<string>('1234');
 
   const router = useRouter();
   const params = router.query;
@@ -46,8 +46,7 @@ export default function IssueSection() {
       const offer = await getOfferUrl(
         credentialsToIssue,
         env.NEXT_PUBLIC_VC_REPO ?? nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_VC_REPO,
-        env.NEXT_PUBLIC_ISSUER ?? nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_ISSUER,
-        env.NEXT_DID_RESOLVER ?? nextConfig.publicRuntimeConfig!.NEXT_DID_RESOLVER
+        env.NEXT_PUBLIC_ISSUER ?? nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_ISSUER
       );
       sendToWebWallet(decodeURI(params.callback!.toString()), 'api/siop/initiateIssuance', offer.data);
     } else {
@@ -83,6 +82,7 @@ export default function IssueSection() {
       <div className="flex flex-col gap-6">
         {credentialsToIssue.map((credential) => (
           <RowCredential
+            mode="issue"
             credentialToEdit={credential}
             credentialsToIssue={credentialsToIssue}
             setCredentialsToIssue={setCredentialsToIssue}
@@ -92,7 +92,7 @@ export default function IssueSection() {
       </div>
       {/*END*/}
       <div className="mt-10"></div>
-      <hr className="text-green-900 border border-[0.5px] border-gray-100" />
+      {/* <hr className="text-green-900 border border-[0.5px] border-gray-100" />
       <h3 className="text-gray-500 text-left mt-2 font-semibold">
         Security Settings
       </h3>
@@ -118,7 +118,7 @@ export default function IssueSection() {
           placeholder=""
           onChange={setPin}
         />
-      </div>
+      </div> */}
       <hr className="my-5" />
       <div className="flex flex-row justify-center gap-3 mt-14">
         <Button onClick={handleCancel} style="link" color="secondary">
@@ -127,12 +127,6 @@ export default function IssueSection() {
         <Button
           disabled={!(credentialsToIssue.length > 0 && (credentialsToIssue.length < 2 || credentialsToIssue.filter((cred) => cred.selectedFormat === "SD-JWT + VCDM").length === 0))}
           onClick={handleIssue}>Issue</Button>
-      </div>
-      <div className="flex flex-col items-center mt-12">
-        <div className="flex flex-row gap-2 items-center content-center text-sm text-center text-gray-500">
-          <p className="">Secured by walt.id</p>
-          <WaltIcon height={15} width={15} type="gray" />
-        </div>
       </div>
     </>
   );

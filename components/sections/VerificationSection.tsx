@@ -7,6 +7,7 @@ import Button from '@/components/walt/button/Button';
 import React, { useState, useContext } from 'react';
 import { CredentialsContext } from '@/pages/_app';
 import { useRouter } from 'next/router';
+import RowCredentialVerify from '../walt/credential/RowCredentialVerify';
 
 export default function VerificationSection() {
   const router = useRouter();
@@ -72,30 +73,21 @@ export default function VerificationSection() {
   return (
     <>
       <h1 className="text-3xl text-gray-900 text-center font-bold">
-        Customise Verification
+        Credential Verification
       </h1>
-      <p className="mt-3 text-gray-600">
-        Select credential format and policies which should be checked
-      </p>
       <hr className="mt-8" />
-      <h3 className="text-gray-500 text-left mt-2 font-semibold">
-        Credential Formats
-      </h3>
-      <div className="mt-12"></div>
-      {/*START*/}
-      <div className="flex flex-col gap-6">
+      <h1 className="text-gray-900 text-center">
         {credentialsToIssue.map((credential) => (
-          <RowCredential
+          <RowCredentialVerify
             credentialToEdit={credential}
             credentialsToIssue={credentialsToIssue}
             setCredentialsToIssue={setCredentialsToIssue}
             key={credential.title} />
         ))}
-      </div>
-      {/*END*/}
+      </h1>
       <div className="mt-12"></div>
       <hr className="text-green-900 border border-[0.5px] border-gray-100" />
-      <h3 className="text-gray-500 text-left mt-2 font-semibold">
+      {/* <h3 className="text-gray-500 text-left mt-2 font-semibold">
         Credential Policies
       </h3>
       <div className="flex flex-row justify-start mt-8">
@@ -132,20 +124,13 @@ export default function VerificationSection() {
             />
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="mt-12" />
-      <hr />
       <div className="flex flex-row justify-center gap-3 mt-14">
         <Button onClick={handleCancel} style="link" color="secondary">
           Cancel
         </Button>
         <Button onClick={handleVerify}>Verify</Button>
-      </div>
-      <div className="flex flex-col items-center mt-12">
-        <div className="flex flex-row gap-2 items-center content-center text-sm text-center text-gray-500">
-          <p className="">Secured by walt.id</p>
-          <WaltIcon height={15} width={15} type="gray" />
-        </div>
       </div>
     </>
   );

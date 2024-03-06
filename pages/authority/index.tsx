@@ -1,4 +1,3 @@
-import CustomCredentialModal from '@/components/walt/modal/CustomCredentialModal';
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import Credential from '@/components/walt/credential/Credential';
 import { AvailableCredential } from '@/types/credentials';
@@ -23,7 +22,6 @@ export default function Home() {
 
   const [credentialsToIssue, setCredentialsToIssue] = useState<CredentialToIssue[]>(prepareCredentialsToIssue);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [modalVisible, setModalVisible] = useState(false);
 
   const showButton = credentialsToIssue.some((cred) => cred.selected);
   const credentials = !searchTerm ? credentialsToIssue : credentialsToIssue.filter(credential => {
@@ -110,7 +108,6 @@ export default function Home() {
             <MagnifyingGlassIcon className='h-6 mt-3 text-gray-500' />
             <input type="text" className='w-full mt-1 border-none outline-none focus:ring-0 bg-gray-50' onChange={handleSearchTermChange} />
           </div>
-          {/* <Button size='sm' onClick={() => { setModalVisible(true); }}>Custom Credential</Button> */}
         </div>
         {searchTerm && credentials.length === 0 && <div className='w-full mt-10 text-center'>No Credential with that name.</div>}
         {!searchTerm && credentials.length === 0 && <div className='w-full mt-10 text-center'>No Credential for this country.</div>}
@@ -135,7 +132,6 @@ export default function Home() {
       >
         Start
       </Button>
-      <CustomCredentialModal show={modalVisible} onClose={() => { setModalVisible(!modalVisible) }} />
     </div>
   );
 }

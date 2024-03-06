@@ -45,7 +45,7 @@ export default function Credential({
           <img
             src={issuer.image}
             alt={issuer.name}
-            className="h-15 bg-white rounded-xl"></img>
+            className="h-15 w-15 bg-white rounded-xl" style={{ width: 'auto' }}></img>
         </div>
       </div>
     </div>
