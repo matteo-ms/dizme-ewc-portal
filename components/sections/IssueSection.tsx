@@ -82,7 +82,6 @@ export default function IssueSection() {
       <div className="flex flex-col gap-6">
         {credentialsToIssue.map((credential) => (
           <RowCredential
-            mode="issue"
             credentialToEdit={credential}
             credentialsToIssue={credentialsToIssue}
             setCredentialsToIssue={setCredentialsToIssue}
