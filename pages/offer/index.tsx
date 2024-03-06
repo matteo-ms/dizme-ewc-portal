@@ -45,7 +45,11 @@ export default function Offer() {
         });
       }
       if (credentials) {
-        const response = await getOfferUrl(credentials, env.NEXT_PUBLIC_VC_REPO ? env.NEXT_PUBLIC_VC_REPO : nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_VC_REPO, env.NEXT_PUBLIC_ISSUER ? env.NEXT_PUBLIC_ISSUER : nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_ISSUER);
+        const response = await getOfferUrl(
+          credentials,
+          env.NEXT_PUBLIC_VC_REPO ? env.NEXT_PUBLIC_VC_REPO : nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_VC_REPO,
+          env.NEXT_PUBLIC_ISSUER ? env.NEXT_PUBLIC_ISSUER : nextConfig.publicRuntimeConfig!.NEXT_PUBLIC_ISSUER
+        );
         setOfferURL(response.data);
         setLoading(false);
       }

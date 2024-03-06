@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { AvailableCredential } from '@/types/credentials';
+import { getIssuerDid, resolveIssuanceKey } from './issuerDids';
 
 const getOfferUrl = async (credentials: Array<AvailableCredential>, NEXT_PUBLIC_VC_REPO: string, NEXT_PUBLIC_ISSUER: string) => {
   const payload = await Promise.all(credentials.map(async (c) => {
@@ -10,6 +11,18 @@ const getOfferUrl = async (credentials: Array<AvailableCredential>, NEXT_PUBLIC_
     }).catch(err => {
       return null;
     }));
+    // TODO: return error if issuer DID is not found
+    const issuerDid = getIssuerDid(c.issuer.name);
+    if (!issuerDid) {
+      throw new Error('Issuer DID not found');
+    }
+    const issuanceKey = await resolveIssuanceKey(issuerDid);
+    if (!issuanceKey) {
+      throw new Error('Issuance key not found');
+    }
+    console.log('issuerDid', issuerDid);
+    console.log('issuanceKey', issuanceKey);
+    console.log('issuanceKey', JSON.stringify(issuanceKey));
     let payload: {
       'issuerDid': string,
       'issuanceKey': { "type": "local", "jwk": string },
@@ -17,8 +30,8 @@ const getOfferUrl = async (credentials: Array<AvailableCredential>, NEXT_PUBLIC_
       mapping?: any,
       selectiveDisclosure?: any
     } = {
-      'issuerDid': 'did:jwk:eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5Iiwia2lkIjoiQ0ZRLU5yYTV5bnlCc2Z4d3k3YU5mOGR1QUVVQ01sTUlyUklyRGc2REl5NCIsIngiOiJoNW5idzZYOUptSTBCdnVRNU0wSlhmek84czJlRWJQZFYyOXdzSFRMOXBrIn0',
-      'issuanceKey': { "type": "local", "jwk": "{\"kty\":\"OKP\",\"d\":\"HIN9WcVCqhGvwZ8I47WeMtxGceSKpvaEnu5eXAoWyDo\",\"crv\":\"Ed25519\",\"kid\":\"CFQ-Nra5ynyBsfxwy7aNf8duAEUCMlMIrRIrDg6DIy4\",\"x\":\"h5nbw6X9JmI0BvuQ5M0JXfzO8s2eEbPdV29wsHTL9pk\"}" },
+      'issuerDid': issuerDid,
+      'issuanceKey': { "type": "local", "jwk": JSON.stringify(issuanceKey) },
       vc: offer
     }
 
