@@ -92,7 +92,7 @@ export default function Home() {
         <Icon height={150} width={150} />
         <Spacer size={10} type={'horizontal'} />
         <div className="flex items-center">
-          <img src={`/flags/${country.toLowerCase().split(" ").join("-")}.png`} alt={country}
+          <img src={`/flags/${country ? country.toLowerCase().split(" ").join("-") : 'default'}.png`} alt={country || 'Default Country'}
               style={{ maxHeight: '50px', marginRight: '10px' }} />
           <h1 className="text-4xl font-bold text-primary-900 text-center mt-5">
             {country} Portal
