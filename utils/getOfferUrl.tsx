@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { AvailableCredential } from '@/types/credentials';
-import { getIssuerDid, resolveIssuanceKey } from './issuerDids';
+import { getIssuerDid, getIssuerJwk, resolveIssuanceKey } from './issuerDids';
 
 const getOfferUrl = async (credentials: Array<AvailableCredential>, NEXT_PUBLIC_VC_REPO: string, NEXT_PUBLIC_ISSUER: string) => {
   const payload = await Promise.all(credentials.map(async (c) => {
@@ -16,13 +16,14 @@ const getOfferUrl = async (credentials: Array<AvailableCredential>, NEXT_PUBLIC_
     if (!issuerDid) {
       throw new Error('Issuer DID not found');
     }
-    const issuanceKey = await resolveIssuanceKey(issuerDid);
+    const issuanceKey = getIssuerJwk(c.issuer.name);
     if (!issuanceKey) {
       throw new Error('Issuance key not found');
     }
     console.log('issuerDid', issuerDid);
     console.log('issuanceKey', issuanceKey);
     console.log('issuanceKey', JSON.stringify(issuanceKey));
+    console.log('mapping', mapping);
     let payload: {
       'issuerDid': string,
       'issuanceKey': { "type": "local", "jwk": string },
